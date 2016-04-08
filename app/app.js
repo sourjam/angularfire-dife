@@ -7,7 +7,10 @@ angular.module('myApp', [
     'myApp.home',
     'myApp.account',
     'myApp.chat',
-    'myApp.login'
+    'myApp.login',
+    'myApp.main',
+    'myApp.work',
+    'myApp.projects'
   ])
   
   .config(['$routeProvider', function ($routeProvider) {
@@ -15,8 +18,19 @@ angular.module('myApp', [
       redirectTo: '/home'
     });
   }])
-  
-  .run(['$rootScope', 'Auth', function($rootScope, Auth) {
+
+  .controller(['$rootScope', function($rootScope){
+    
+  }])
+
+  .run(['$rootScope', 'Auth', '$location', function($rootScope, Auth, $location) {
+    $rootScope.app = {activeTab: 0, clean: true};
+    
+    $rootScope.$on('$locationChangeStart', function(){
+      $rootScope.app.path = $location.path();
+      console.log('hi', $rootScope.app.activeTab, $location.path());
+      
+    });
     // track status of authentication
     Auth.$onAuth(function(user) {
       $rootScope.loggedIn = !!user;

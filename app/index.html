@@ -3,26 +3,52 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>My AngularJS App</title>
+  <title>Down In Front End</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
   <link rel="stylesheet" href="app.css"/>
+  <link rel="stylesheet" href="main/main.css"/>
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body ng-cloak>
+  
+  <div class="main">
+    <div class="main__sidebar">
+      <a class="main__anchor" href="#/home" ng-click="app.activeTab = 1; app.clean = false">
+        <div class="main__anchor--text main__anchor--text--hi main__anchor--hi--inactive"
+             ng-class="{'main__anchor--inactive--swipeout': app.path == '/home',
+                       'main__anchor--inactive--swipein': app.path !== '/home'}">Hi.</div>
+        <div class="main__anchor--text main__anchor--text--hi main__anchor--hi--active"
+             ng-class="{'main__anchor--ontop': app.path == '/home' && app.clean == true}">Hi.</div>
+        <div class="main__anchor--text main__anchor--text--hi main__anchor--hi--clean"
+             ng-class="{'main__anchor--ontop': app.clean == true && app.path !== '/home' }">Hi.</div>
+      </a>
+      <a class="main__anchor" href="#/work" ng-click="app.activeTab = 2; app.clean = false">
+        <div class="main__anchor--text main__anchor--work--inactive"
+             ng-class="{'main__anchor--inactive--swipeout': app.path == '/work',
+                       'main__anchor--inactive--swipein': app.path !== '/work'}">Work</div>
+        <div class="main__anchor--text main__anchor--work--active"
+             ng-class="{'main__anchor--ontop': app.path == '/work' && app.clean == true}">Work</div>
+        <div class="main__anchor--text main__anchor--text--work main__anchor--work--clean"
+             ng-class="{'main__anchor--ontop': app.clean == true && app.path !== '/work' }">Work</div>
+      </a>
+      <a class="main__anchor" href="#/projects" ng-click="activeTab = 3; app.clean = false">
+        <div class="main__anchor--text main__anchor--projects--inactive"
+             ng-class="{'main__anchor--inactive--swipeout': app.path == '/projects',
+                       'main__anchor--inactive--swipein': app.path !== '/projects'}">Projects</div>
+        <div class="main__anchor--text main__anchor--projects--active"
+             ng-class="{'main__anchor--ontop': app.path == '/projects' && app.clean == true}">Projects</div>
+        <div class="main__anchor--text main__anchor--text--projects main__anchor--projects--clean"
+             ng-class="{'main__anchor--ontop': app.clean == true && app.path !== '/projects' }">Projects</div>
+      </a>
+    </div>
 
-  <ul class="menu">
-    <li><a href="#/home">home</a></li>
-    <li><a href="#/chat">chat</a></li>
-    <li ng-hide="loggedIn"><a href="#/login">login</a></li>
-    <li ng-show="loggedIn"><a href="#/account">account</a></li>
-  </ul>
-
-  <div ng-view></div>
-
-  <div>AngularFire-seed v<span app-version></span></div>
+    <div class="main__content" ng-view></div>
+    
+  </div>
 
   <!-- In production use:
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.x/angular.min.js"></script>
@@ -49,5 +75,8 @@
   <script src="account/account.js"></script>
   <script src="chat/chat.js"></script>
   <script src="login/login.js"></script>
+  <script src="main/main.js"></script>
+  <script src="work/work.js"></script>
+  <script src="projects/projects.js"></script>
 </body>
 </html>
